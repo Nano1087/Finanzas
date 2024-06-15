@@ -6,9 +6,34 @@
     
     <link rel="icon" type="image/png" sizes="32x32" href="imagenes/salary_3135706.png">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="menu.css" />
     <title>APP DE GASTOS</title>
 </head>
 <body>
+    <nav id='menu'>
+        <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+        <ul>
+          <li><a href='http://'>Home</a></li>
+         <!--  <li><a class='dropdown-arrow' href='http://'>Products</a>
+            <ul class='sub-menus'>
+              <li><a href='http://'>Products Sub Menu 1</a></li>
+              <li><a href='http://'>Products Sub Menu 2</a></li>
+              <li><a href='http://'>Products Sub Menu 3</a></li>
+              <li><a href='http://'>Products Sub Menu 4</a></li>
+            </ul> -->
+          </li>
+          <li><a href='http://'>Gastos</a></li>
+          <!-- <li><a class='dropdown-arrow' href='http://'>Services</a>
+            <ul class='sub-menus'>
+              <li><a href='http://'>Services Sub Menu 1</a></li>
+              <li><a href='http://'>Services Sub Menu 2</a></li>
+              <li><a href='http://'>Services Sub Menu 3</a></li>
+            </ul>
+          </li> -->
+          <li><a href='http://'>Contact Us</a></li>
+        </ul>
+      </nav>
+
 <h1>Gestión de Gastos</h1>
 
 <form action="" id="form">
@@ -19,25 +44,15 @@
 
 </form>
 <div class="tabla">
-    <table>
-        <thead>
+    <table class="table">
+        <thead id="cabecera">
             <tr>
-                <th>fecha</th><th>Descripción</th><th>Costo</th>
+                <th>Fecha</th><th>Descripción</th><th>Costo</th>
             </tr>
         </thead>
 
-        <tr>
-            <td>Agua</td><td>Enero</td><td>$ 3,000</td>
-        </tr>
-        <tr>
-            <td>Luz</td><td>Febrero</td><td>$ 5,500</td>
-        </tr>
-        <tr>
-            <td>Coche</td><td>Marzo</td><td>$ 10,100</td>
-        </tr>
-        <tr>
-            <td>Internet</td><td>Abril</td><td>$ 450</td>
-        </tr>
+       
+        
     </table>
 </div>
 

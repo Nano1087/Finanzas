@@ -22,18 +22,8 @@ body{
     background: url(imagenes/fondo_1.webp) no-repeat center center/ cover;
 }
 
-.contenedor {
-  width: 700px;
-  min-height: 500px;
-  background-color:transparent;
-  padding: 40px;
-  border: 5px solid black;
-  border-radius: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-items: center;
-}
+
+
 #btn{
    /*  color: var(--light-color); */
     text-decoration: none;
@@ -41,6 +31,7 @@ body{
     padding: 5px 15px;
     margin: 0px 5px;
     font-size: 14px;
+    border-radius: 8px;
     
 }
 
@@ -48,11 +39,14 @@ body{
     background-color: #547ae4;
     padding: 1.5% 1%;
     margin-top: 1%;
+    border-radius: 10px;
+
 }
 .tabla{
 
     margin: 50px auto;
 	width: 600px;
+    display: none;
 }
 
 table{
@@ -71,6 +65,7 @@ thead{
 	background-color: #243563;
 	border-bottom: solid 5px #0F362D;
 	color: white;
+   
 }
 
 tr:nth-child(even){
@@ -83,16 +78,28 @@ tr:hover td{
 }
 
 @media(max-width: 500px){
-    .contenedor {
+    #form {
       width: 400px;
-      min-height: 500px;
-      background-color:transparent;
-      padding: 40px;
       display: flex;
       flex-wrap: wrap;
-      flex-direction: column;
-      align-items: center;
+      flex-direction: row;
       font-size: 14px;
     }
-  
+    #btn{
+        /*  color: var(--light-color); */
+         text-decoration: none;
+         padding: 5px 5px;
+         margin: 0px 2px;
+         font-size: 12px;
+         width: 25%;
+         
+}
+
+input{
+    width: 22%;
+    margin: 1%;
+}
+.tabla{
+	width: 350px;
+}
 }
