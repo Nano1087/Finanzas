@@ -1,9 +1,12 @@
+document.addEventListener("DOMContentLoaded", function() {
 const btn = document.querySelector("#btn");
 const gastosHtml = document.querySelector('.table')
 const form = document.querySelector("#form");
 const filas = document.getElementById('filas');
 const tabla = document.querySelector('.tabla');
 
+
+// fomrulario 
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -19,7 +22,7 @@ form.addEventListener("submit", (e) => {
 
 
    
-  
+ //  funcion para crear gastos
 
  function createGasto(){
   tabla.style.display = 'block'; // Mostrar el elemento
@@ -28,5 +31,48 @@ form.addEventListener("submit", (e) => {
      
   <td>${fecha.value}</td><td>${descripcion.value}</td><td>${monto.value}</td>
   </tr>`
-  gastosHtml.innerHTML+=newHTMLCode;
+ gastosHtml.insertAdjacentHTML('beforeend', newHTMLCode);
 } 
+});
+
+ // Modal elements
+ const modal = document.getElementById("incomeModal");
+ const openModalButton = document.getElementById("openModalButton");
+ const closeModalButton = document.getElementsByClassName("close")[0];
+ const incomeForm = document.getElementById('income-form');
+ openModalButton.onclick = function() {
+     modal.style.display = "block";
+ }
+
+ closeModalButton.onclick = function() {
+     modal.style.display = "none";
+ }
+
+ window.onclick = function(event) {
+     if (event.target == modal) {
+         modal.style.display = "none";
+     }
+ }
+
+ 
+
+ incomeForm.addEventListener("submit", (e) => {
+     e.preventDefault();
+
+     const fecha = document.querySelector("#income-fecha").value;
+     const descripcion = document.querySelector("#income-descripcion").value;
+     const monto = document.querySelector("#income-monto").value;
+
+     if (descripcion !== "" && monto !== "" && fecha !== "") {
+         console.log("Se ingresó un ingreso");
+         createIngreso(fecha, descripcion, monto);
+         incomeForm.reset();
+         modal.style.display = "none";
+     }
+ });
+//funcion crear ingreso
+
+ function createIngreso(fecha, descripcion, monto) {
+  // Aquí puedes agregar la lógica para manejar ingresos
+  console.log(`Ingreso agregado: ${fecha}, ${descripcion}, ${monto}`);
+}

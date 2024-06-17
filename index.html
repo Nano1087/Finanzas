@@ -7,6 +7,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="imagenes/salary_3135706.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="menu.css" />
+    <link rel="stylesheet" href="modal.css">
     <title>APP DE GASTOS</title>
 </head>
 <body>
@@ -34,27 +35,50 @@
         </ul>
       </nav>
 
+      <!-- boton de ingresos -->
+
+   <div id="ingresos"> <button id="openModalButton">Agregar Ingreso</button></div>
+
 <h1>Gestión de Gastos</h1>
 
-<form action="" id="form">
-    <input type="date"  id="fecha">
-    <input type="text" placeholder="Descripcion" id="descripcion">
-    <input type="number"  id="monto">
-    <input type="submit" value="Ingresar gastos" id="btn">
-
+<!-- formulario para gastos -->
+<form id="form">
+  <input type="date" id="fecha" placeholder="Fecha" required>
+  <input type="text" id="descripcion" placeholder="Descripción" required>
+  <input type="number" id="monto" placeholder="Monto" required>
+  <button type="submit" id="btn">Agregar Gasto</button>
 </form>
+
+ <!-- Modal de ingresos -->
+ <div id="incomeModal" class="modal">
+  <div class="modal-content">
+      <span class="close">&times;</span>
+      <form id="income-form">
+          <input type="date" id="income-fecha" placeholder="Fecha" required><br />
+          <input type="text" id="income-descripcion" placeholder="Descripción" required><br />
+          <input type="number" id="income-monto" placeholder="Monto" required><br />
+          <button type="submit" id="btn">Agregar Ingreso</button>
+      </form>
+  </div>
+</div>
+
+<!-- tabla de los gastos -->
 <div class="tabla">
     <table class="table">
-        <thead id="cabecera">
-            <tr>
-                <th>Fecha</th><th>Descripción</th><th>Costo</th>
-            </tr>
-        </thead>
-
-       
-        
-    </table>
+      <thead id="cabecera">
+          <tr>
+              <th>Fecha</th>
+              <th>Descripción</th>
+              <th>Monto</th>
+          </tr>
+      </thead>
+     <!--  <tbody id="gastosHtml">
+      </tbody> -->
+  </table>
 </div>
+
+
+
 
     <script src="main.js"></script>
 </body>
