@@ -5,6 +5,9 @@ const form = document.querySelector("#form");
 const filas = document.getElementById('filas');
 const tabla = document.querySelector('.tabla');
 
+
+const URL_API = 'http://localhost:3000/api/'
+
 let ingresos = [];
 let gastos = [];
 
@@ -36,7 +39,7 @@ form.addEventListener("submit", (e) => {
   </tr>`
  gastosHtml.insertAdjacentHTML('beforeend', newHTMLCode);
 
-
+Save();
 } 
 
 
@@ -92,28 +95,28 @@ console.log( balance);
 const botonElem = document.getElementById('boton-valance');
 botonElem.addEventListener('click', balance);
 
-/* 
 async function save() {
-    var data = {
+    var gasto = {
         "fecha":document.querySelector("#fecha").value,
         "descripcion" : document.querySelector("#descripcion").value,
         "monto" : document.querySelector("#monto").value
     }
   
-   /*  var id = document.getElementById('txtId').value
+     /* var id = document.getElementById('txtId').value
     if (id != '') {
       data.id = id 
-    }
+    } */
+
   
-    var url = URL_API + 'customers'
+    var url = URL_API
     await fetch(url, {
       "method": 'POST',
-      "body": JSON.stringify(data),
+      "body": JSON.stringify(gasto),
       "headers": {
         "Content-Type": 'application/json'
       }
     })
-    window.location.reload();} */
+   // window.location.reload();}
   
 
 
