@@ -15,26 +15,33 @@
     background-color: #fefefe;
     align-items: center;
     margin: 20% auto; /* 20% from the top and centered */
-    padding: 25px;
+    padding: 15px;
     border: 1px solid #888;
     max-width: 250px; /* Could be more or less, depending on screen size */
 }
 .modal-content input{
-    display: flex; 
-    justify-content: center;
     width: 75%;
-    margin-top: 1px;
-  
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
+
+.tittle-modal{
+    margin-top: 30px;
+    margin-left: 50px;
+}
+
 #income-form{
-    margin-top: 25px;
+    display: flex; 
+    flex-direction: column;
+    margin-top: 5px;
+    margin-left: 40px;
+   
 }
 
 .close {
     margin-top: 2px;
-    margin-bottom: 50px;
     color: #aaa;
-    float: inline-end;
+    float: right;
     font-size: 28px;
     font-weight: bold;
 }

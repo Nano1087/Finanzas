@@ -34,6 +34,14 @@ body{
  cursor: pointer;
 }
 
+#boton-valance{
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 8px;
+    border: 2px solid var(--light-color);
+    cursor: pointer;
+   }
+
 
 
 #btn{

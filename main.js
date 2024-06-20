@@ -5,6 +5,8 @@ const form = document.querySelector("#form");
 const filas = document.getElementById('filas');
 const tabla = document.querySelector('.tabla');
 
+let ingresos = [];
+let gastos = [];
 
 // fomrulario 
 
@@ -16,6 +18,7 @@ form.addEventListener("submit", (e) => {
      const fecha = document.querySelector("#fecha").value;
      const descripcion = document.querySelector("#descripcion").value;
      const monto = document.querySelector("#monto").value;
+     gastos.push({ fecha, descripcion, monto });
      form.reset();
     }
   });
@@ -32,8 +35,11 @@ form.addEventListener("submit", (e) => {
   <td>${fecha.value}</td><td>${descripcion.value}</td><td>${monto.value}</td>
   </tr>`
  gastosHtml.insertAdjacentHTML('beforeend', newHTMLCode);
+
+
 } 
-});
+
+
 
  // Modal elements
  const modal = document.getElementById("incomeModal");
@@ -65,14 +71,50 @@ form.addEventListener("submit", (e) => {
 
      if (descripcion !== "" && monto !== "" && fecha !== "") {
          console.log("Se ingresó un ingreso");
-         createIngreso(fecha, descripcion, monto);
+         ingresos.push({ fecha, descripcion, monto });
          incomeForm.reset();
          modal.style.display = "none";
      }
  });
-//funcion crear ingreso
 
- function createIngreso(fecha, descripcion, monto) {
-  // Aquí puedes agregar la lógica para manejar ingresos
-  console.log(`Ingreso agregado: ${fecha}, ${descripcion}, ${monto}`);
+
+
+
+function balance(){
+ console.log(gastos[0].monto , ingresos[0].monto);
+var gasto= gastos[0].monto 
+var ingreso= ingresos[0].monto
+
+var balance = (ingreso - gasto);
+console.log( balance);
+
 }
+const botonElem = document.getElementById('boton-valance');
+botonElem.addEventListener('click', balance);
+
+/* 
+async function save() {
+    var data = {
+        "fecha":document.querySelector("#fecha").value,
+        "descripcion" : document.querySelector("#descripcion").value,
+        "monto" : document.querySelector("#monto").value
+    }
+  
+   /*  var id = document.getElementById('txtId').value
+    if (id != '') {
+      data.id = id 
+    }
+  
+    var url = URL_API + 'customers'
+    await fetch(url, {
+      "method": 'POST',
+      "body": JSON.stringify(data),
+      "headers": {
+        "Content-Type": 'application/json'
+      }
+    })
+    window.location.reload();} */
+  
+
+
+  });

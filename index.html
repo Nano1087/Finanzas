@@ -37,7 +37,10 @@
 
       <!-- boton de ingresos -->
 
-   <div id="ingresos"> <button id="openModalButton">Agregar Ingreso</button></div>
+<div id="ingresos"> 
+    <button id="openModalButton">Agregar Ingreso</button>
+    <button type="button" id="boton-valance">Valance</button>  
+</div>
 
 <h1>Gestión de Gastos</h1>
 
@@ -52,11 +55,12 @@
  <!-- Modal de ingresos -->
  <div id="incomeModal" class="modal">
   <div class="modal-content">
-      <span class="close">&times;</span>
+      <div class="close"><span >&times;</span></div>
+      <h2 class="tittle-modal">Ingresos</h2>
       <form id="income-form">
-          <input type="date" id="income-fecha" placeholder="Fecha" required><br />
-          <input type="text" id="income-descripcion" placeholder="Descripción" required><br />
-          <input type="number" id="income-monto" placeholder="Monto" required><br />
+          <input type="date" id="income-fecha" placeholder="Fecha" required>
+          <input type="text" id="income-descripcion" placeholder="Descripción" required>
+          <input type="number" id="income-monto" placeholder="Monto" required>
           <button type="submit" id="btn">Agregar Ingreso</button>
       </form>
   </div>
