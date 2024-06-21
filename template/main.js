@@ -39,7 +39,7 @@ form.addEventListener("submit", (e) => {
   </tr>`
  gastosHtml.insertAdjacentHTML('beforeend', newHTMLCode);
 
-Save();
+ Salvar();
 } 
 
 
@@ -95,12 +95,14 @@ console.log( balance);
 const botonElem = document.getElementById('boton-valance');
 botonElem.addEventListener('click', balance);
 
-async function save() {
+async function Salvar() {
     var gasto = {
         "fecha":document.querySelector("#fecha").value,
         "descripcion" : document.querySelector("#descripcion").value,
         "monto" : document.querySelector("#monto").value
     }
+
+    console.log(gasto);
   
      /* var id = document.getElementById('txtId').value
     if (id != '') {
@@ -120,4 +122,6 @@ async function save() {
   
 
 
-  });
+  };
+
+});
