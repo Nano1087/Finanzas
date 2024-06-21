@@ -17,3 +17,10 @@ app.listen(3000, () => {
         res.status(200).send(gasto);
     });
 });
+
+app.post('/api', (req, res) => {
+  const gasto = req.params.gasto;
+  console.log(gasto);
+  
+ 
+});
