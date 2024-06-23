@@ -2,8 +2,10 @@ const express = require('express');
 //const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const app = express();
-//const database = require("./database");
+const {con} = require('./db');
 const cors = require("cors")
+
+const totalMonto = 0;
 
 
 //Configuraciones
@@ -25,25 +27,64 @@ app.listen(3000, () => {
   });
 
 
-  app.post('/api/gastos', (req, res) => {
-    const nuevoGasto = new Gasto(req.body);
-    nuevoGasto.save((err, gasto) => {
-        if (err) return res.status(500).send(err);
-        res.status(200).send(gasto);
-    });
+ //Rutas
+
+app.post('/api/gasto', async(req, res) => {
+  const gasto = await req.body;
+  console.log(gasto.descripcion);
+  con.query("SELECT * FROM gasto", function (err, result, fields) {
+    if (err) throw err;
+    //console.log(result);
+           });
+ var query = "INSERT INTO `app_finanzas`.`gasto` ( `fecha`, `descripcion`, `monto`) VALUES ('" + gasto.fecha + "', '" + gasto.descripcion + "', '" + gasto.monto + "');"
+  con.query(query, function (err, result, fields){
+    if (err) throw err;
+           });
 });
 
-app.post('/api', (req, res) => {
-  const gasto = req.body.monto;
-  console.log(gasto);
-  
- 
+app.post('/api/ingreso', async(req, res) => {
+  const ingreso = await req.body;
+  console.log(ingreso.descripcion);
+  con.query("SELECT * FROM ingreso", function (err, result, fields) {
+    if (err) throw err;
+    //console.log(result);
+           });
+ var query = "INSERT INTO `app_finanzas`.`ingreso` ( `fecha`, `descripcion`, `monto`) VALUES ('" + ingreso.fecha + "', '" + ingreso.descripcion + "', '" + ingreso.monto + "');"
+  con.query(query, function (err, result, fields){
+    if (err) throw err;
+           });
 });
 
-app.get('/', (req, res) => {    
-  res.json(
+
+
+app.get('/api/balance', (req, res) => {    
+  /* res.json(
       {
           "Title": "Hola mundo"
       }
-  );
+  ); */
 })
+
+
+app.get('/api/gasto/consulta', async(req, res) => {
+
+con.query("SELECT * FROM gasto ", (err, result) =>{
+  if (err) throw err;
+  res.json(result);
+  //console.log(result);
+  })
+
+
+})
+
+
+app.get('/api/ingreso/consulta', async(req, res) => {
+
+  con.query("SELECT * FROM ingreso ", (err, result) =>{
+    if (err) throw err;
+    res.json(result);
+    //console.log(result);
+    })
+  
+  
+  })

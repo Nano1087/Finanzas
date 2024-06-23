@@ -10,6 +10,11 @@ const URL_API = 'http://localhost:3000/api/'
 
 let ingresos = [];
 let gastos = [];
+let totalGasto;
+let totalIngreso;
+let total;
+
+//Gastos
 
 // fomrulario 
 
@@ -39,10 +44,32 @@ form.addEventListener("submit", (e) => {
   </tr>`
  gastosHtml.insertAdjacentHTML('beforeend', newHTMLCode);
 
- Salvar();
+ saveGasto();
 } 
 
+//Enviar gasto a la base de datos
+async function saveGasto() {
+  var gasto = {
+      "fecha":document.querySelector("#fecha").value,
+      "descripcion" : document.querySelector("#descripcion").value,
+      "monto" : document.querySelector("#monto").value
+  }
+  //console.log(gasto);
 
+  var url = URL_API + "gasto";
+  console.log(url);
+  await fetch(url,{
+    "method": 'POST',
+    "body": JSON.stringify(gasto),
+    "headers": {
+      "Content-Type": 'application/json'
+    }
+  })
+ // window.location.reload();}
+
+};
+
+//ingresos 
 
  // Modal elements
  const modal = document.getElementById("incomeModal");
@@ -74,6 +101,7 @@ form.addEventListener("submit", (e) => {
 
      if (descripcion !== "" && monto !== "" && fecha !== "") {
          console.log("Se ingresó un ingreso");
+         saveIngreso();
          ingresos.push({ fecha, descripcion, monto });
          incomeForm.reset();
          modal.style.display = "none";
@@ -82,46 +110,69 @@ form.addEventListener("submit", (e) => {
 
 
 
+  // Enviar ingreso a la base de datos
 
-function balance(){
- console.log(gastos[0].monto , ingresos[0].monto);
-var gasto= gastos[0].monto 
-var ingreso= ingresos[0].monto
-
-var balance = (ingreso - gasto);
-console.log( balance);
-
-}
-const botonElem = document.getElementById('boton-valance');
-botonElem.addEventListener('click', balance);
-
-async function Salvar() {
-    var gasto = {
-        "fecha":document.querySelector("#fecha").value,
-        "descripcion" : document.querySelector("#descripcion").value,
-        "monto" : document.querySelector("#monto").value
+  async function saveIngreso() {
+    var ingreso = {
+        "fecha":document.querySelector("#income-fecha").value,
+        "descripcion" : document.querySelector("#income-descripcion").value,
+        "monto" : document.querySelector("#income-monto").value
     }
-
-    console.log(gasto);
+    console.log(ingreso);
   
-     /* var id = document.getElementById('txtId').value
-    if (id != '') {
-      data.id = id 
-    } */
-
-  
-    var url = URL_API
-    await fetch(url, {
+    var url = URL_API + "ingreso";
+    await fetch(url,{
       "method": 'POST',
-      "body": JSON.stringify(gasto),
+      "body": JSON.stringify(ingreso),
       "headers": {
         "Content-Type": 'application/json'
       }
     })
    // window.location.reload();}
   
-
-
   };
+
+
+  const balance = document.getElementById('boton-balance');
+  balance.addEventListener('click', function(event) {
+  console.log(`El botón con ID ${event.target.id} fue clickeado`);
+  gastoConsulta();
+  ingresoConsulta();
+  calcular()
+  })
+
+  async function gastoConsulta(){
+    const res = await fetch("http://localhost:3000/api/gasto/consulta");
+    const resJson = await res.json();
+    console.log(resJson);
+    gastos = resJson;
+    //console.log(gastos);
+    totalGasto = gastos.reduce((acc, gasto) => acc + gasto.monto, 0);
+    console.log(`El total de los gastos es: ${totalGasto}`);
+    return totalGasto;
+  }
+
+
+  async function ingresoConsulta(){
+    const res = await fetch("http://localhost:3000/api/ingreso/consulta");
+    const resJson = await res.json();
+    console.log(resJson);
+    gastos = resJson;
+    //console.log(gastos);
+    totalIngreso = gastos.reduce((acc, gasto) => acc + gasto.monto, 0);
+    console.log(`El total de los ingreso es: ${totalIngreso}`);
+    return totalIngreso;
+  }
+
+  async function calcular(){
+
+    console.log(totalGasto,totalIngreso);
+
+    total = await (totalIngreso-totalGasto);
+    console.log(total);
+
+  }
+  
+  
 
 });
