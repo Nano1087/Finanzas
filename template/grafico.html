@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="menu.css" />
+    <title>Grafico</title>
+</head>
+<body>
+
+    <nav id='menu'>
+        <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+        <ul>
+          <li><a href='http://'>Home</a></li>
+        
+          </li>
+          <li><a href='index.html'>Gastos</a></li>
+         
+          <li><a href = 'grafico.html'>Grafico</a></li>
+        </ul>
+      </nav>
+
+      <!-- boton de ingresos -->
+
+<div id="ingresos"> 
+    <button type="button" id="boton-balance">Balance</button>  
+</div>
+    
+    <canvas id="myChart" width="200" height="100"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="grafico.js"></script>
+
+</body>
+</html>

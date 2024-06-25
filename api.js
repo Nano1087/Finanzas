@@ -5,7 +5,6 @@ const app = express();
 const {con} = require('./db');
 const cors = require("cors")
 
-const totalMonto = 0;
 
 
 //Configuraciones

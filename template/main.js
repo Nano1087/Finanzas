@@ -10,9 +10,7 @@ const URL_API = 'http://localhost:3000/api/'
 
 let ingresos = [];
 let gastos = [];
-let totalGasto;
-let totalIngreso;
-let total;
+
 
 //Gastos
 
@@ -133,46 +131,5 @@ async function saveGasto() {
   };
 
 
-  const balance = document.getElementById('boton-balance');
-  balance.addEventListener('click', function(event) {
-  console.log(`El botón con ID ${event.target.id} fue clickeado`);
-  gastoConsulta();
-  ingresoConsulta();
-  calcular()
-  })
-
-  async function gastoConsulta(){
-    const res = await fetch("http://localhost:3000/api/gasto/consulta");
-    const resJson = await res.json();
-    console.log(resJson);
-    gastos = resJson;
-    //console.log(gastos);
-    totalGasto = gastos.reduce((acc, gasto) => acc + gasto.monto, 0);
-    console.log(`El total de los gastos es: ${totalGasto}`);
-    return totalGasto;
-  }
-
-
-  async function ingresoConsulta(){
-    const res = await fetch("http://localhost:3000/api/ingreso/consulta");
-    const resJson = await res.json();
-    console.log(resJson);
-    gastos = resJson;
-    //console.log(gastos);
-    totalIngreso = gastos.reduce((acc, gasto) => acc + gasto.monto, 0);
-    console.log(`El total de los ingreso es: ${totalIngreso}`);
-    return totalIngreso;
-  }
-
-  async function calcular(){
-
-    console.log(totalGasto,totalIngreso);
-
-    total = await (totalIngreso-totalGasto);
-    console.log(total);
-
-  }
-  
-  
-
+ 
 });
