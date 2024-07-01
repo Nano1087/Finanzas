@@ -3,11 +3,16 @@ const express = require('express');
 const morgan = require('morgan');
 const app = express();
 const {con} = require('./db');
-const cors = require("cors")
-
+const cors = require("cors");
+const cookieParser = require('cookie-parser');
+const authentication = require('./controllers/authentication.controller.js');
+const authorization = require('./middlewares/authorization.js');
 
 
 //Configuraciones
+app.use(express.static(__dirname + "/template"));
+app.use(express.json());
+app.use(cookieParser())
 app.set('port', process.env.PORT || 3000);
 app.set('json spaces', 2)
  
@@ -27,6 +32,12 @@ app.listen(3000, () => {
 
 
  //Rutas
+
+app.get("/",authorization.soloPublico, (req,res)=> res.sendFile(__dirname + "/template/login.html"));
+app.get("/register",authorization.soloPublico,(req,res)=> res.sendFile(__dirname + "/template/register.html"));
+app.get("/gasto",authorization.soloAdmin,(req,res)=> res.sendFile(__dirname + "/template/index.html"));
+app.post('/login',authentication.login);
+app.post('/register',authentication.register);
 
 app.post('/api/gasto', async(req, res) => {
   const gasto = await req.body;
