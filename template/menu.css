@@ -93,3 +93,9 @@
 	#menu input:checked + label:before {content:"\00d7"}
 	#menu input:checked ~ ul {display:block}
 }
+
+#contenedor {
+	width: 300px;
+	min-height: 200px;
+	background-color:transparent;
+}

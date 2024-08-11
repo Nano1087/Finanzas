@@ -47,16 +47,48 @@ function calcular(){
 function generarGrafico(){
   const total = calcular();
   const ctx = document.getElementById('myChart').getContext('2d');
-  const myChart = new Chart(ctx, {
-    type: 'bar',
+  const myPieChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Ingresos', 'Gastos', 'Total'],
+        datasets: [{
+            data: [totalIngreso, totalGasto, total],
+            backgroundColor: ['green', 'red', 'yellow'],
+            hoverBackgroundColor: ['#389B3D', '#921313', '#DDAF3B']
+        }]
+    },
+
+    options: {
+      responsive: true,
+      plugins: {
+          legend: {
+              position: 'top',
+          },
+          tooltip: {
+              callbacks: {
+                  label: function(context) {
+                      let label = context.label || '';
+                      if (label) {
+                          label += ': ';
+                      }
+                      label += context.raw;
+                      return label;
+                  }
+              }
+          }
+      }
+  }
+});
+ /*  const myChart = new Chart(ctx, {
+    type: 'pie',
     data: {
       labels: ['Gastos', 'Ingresos', 'Total'],
       datasets: [{
         label: 'Montos',
         data: [totalGasto, totalIngreso, total],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 0, 0, 0.2)',
+          'rgba(119, 163, 69, 0.2)',
           'rgba(75, 192, 192, 0.2)'
         ],
         borderColor: [
@@ -68,11 +100,8 @@ function generarGrafico(){
       }]
     },
     options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
+     
     }
-  });
+  });*/
 }
+ 

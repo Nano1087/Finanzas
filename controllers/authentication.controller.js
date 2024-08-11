@@ -36,7 +36,7 @@ console.log('login no es correcto');
       path: "/"
     }
     res.cookie("jwt",token,cookieOption);
-    res.send({status:"ok",message:"Usuario loggeado",redirect:"index"});
+    res.send({status:"ok",message:"Usuario loggeado",redirect:"index.html"});
     //res.render("bombas")
 }
 
